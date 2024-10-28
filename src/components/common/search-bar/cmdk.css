@@ -1,0 +1,324 @@
+:root {
+    --font-sans: "Inter",--apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+    --app-bg: var(--gray1);
+    --cmdk-shadow: 0 16px 70px rgba(0,0,0,.2);
+    --lowContrast: #fff;
+    --highContrast: #000;
+    --gray1: #fcfcfc;
+    --gray2: #f8f8f8;
+    --gray3: #f3f3f3;
+    --gray4: #ededed;
+    --gray5: #e8e8e8;
+    --gray6: #e2e2e2;
+    --gray7: #dbdbdb;
+    --gray8: #c7c7c7;
+    --gray9: #8f8f8f;
+    --gray10: #858585;
+    --gray11: #6f6f6f;
+    --gray12: #171717;
+    --grayA1: rgba(0,0,0,.012);
+    --grayA2: rgba(0,0,0,.027);
+    --grayA3: rgba(0,0,0,.047);
+    --grayA4: rgba(0,0,0,.071);
+    --grayA5: rgba(0,0,0,.09);
+    --grayA6: rgba(0,0,0,.114);
+    --grayA7: rgba(0,0,0,.141);
+    --grayA8: rgba(0,0,0,.22);
+    --grayA9: rgba(0,0,0,.439);
+    --grayA10: rgba(0,0,0,.478);
+    --grayA11: rgba(0,0,0,.565);
+    --grayA12: rgba(0,0,0,.91);
+    --blue1: #fbfdff;
+    --blue2: #f5faff;
+    --blue3: #edf6ff;
+    --blue4: #e1f0ff;
+    --blue5: #cee7fe;
+    --blue6: #b7d9f8;
+    --blue7: #96c7f2;
+    --blue8: #5eb0ef;
+    --blue9: #0091ff;
+    --blue10: #0081f1;
+    --blue11: #006adc;
+    --blue12: #00254d
+}
+
+.dark {
+    --app-bg: var(--gray1);
+    --lowContrast: #000;
+    --highContrast: #fff;
+    --gray1: #161616;
+    --gray2: #1c1c1c;
+    --gray3: #232323;
+    --gray4: #282828;
+    --gray5: #2e2e2e;
+    --gray6: #343434;
+    --gray7: #3e3e3e;
+    --gray8: #505050;
+    --gray9: #707070;
+    --gray10: #7e7e7e;
+    --gray11: #a0a0a0;
+    --gray12: #ededed;
+    --grayA1: hsla(0,0%,100%,0);
+    --grayA2: hsla(0,0%,100%,.026);
+    --grayA3: hsla(0,0%,100%,.056);
+    --grayA4: hsla(0,0%,100%,.077);
+    --grayA5: hsla(0,0%,100%,.103);
+    --grayA6: hsla(0,0%,100%,.129);
+    --grayA7: hsla(0,0%,100%,.172);
+    --grayA8: hsla(0,0%,100%,.249);
+    --grayA9: hsla(0,0%,100%,.386);
+    --grayA10: hsla(0,0%,100%,.446);
+    --grayA11: hsla(0,0%,100%,.592);
+    --grayA12: hsla(0,0%,100%,.923);
+    --blue1: #0f1720;
+    --blue2: #0f1b2d;
+    --blue3: #10243e;
+    --blue4: #102a4c;
+    --blue5: #0f3058;
+    --blue6: #0d3868;
+    --blue7: #0a4481;
+    --blue8: #0954a5;
+    --blue9: #0091ff;
+    --blue10: #369eff;
+    --blue11: #52a9ff;
+    --blue12: #eaf6ff
+}
+
+.dark [cmdk-root]:after {
+    background: linear-gradient(to right,var(--gray6) 20%,var(--gray6) 40%,var(--gray10) 50%,var(--gray10) 55%,var(--gray6) 70%,var(--gray6) 100%);
+    animation: shine 3s ease .1s forwards;
+    background-size: 200% auto
+}
+
+[cmdk-root] kbd {
+    font-family: var(--font-sans);
+    background: var(--gray3);
+    color: var(--gray11);
+    height: 20px;
+    width: 20px;
+    border-radius: 4px;
+    padding: 0 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center
+}
+
+[cmdk-root] kbd:first-of-type {
+    margin-left: 8px
+}
+
+
+.dark [cmdk-raycast-top-shine] {
+    background: linear-gradient(90deg,rgba(56,189,248,0),var(--gray5) 20%,var(--gray9) 67.19%,rgba(236,72,153,0));
+    height: 1px;
+    position: absolute;
+    top: -1px;
+    width: 100%;
+    z-index: -1;
+    opacity: 0;
+    animation: showTopShine .1s ease .2s forwards
+}
+
+[cmdk-raycast-loader] {
+    --loader-color: var(--gray9);
+    border: 0;
+    width: 100%;
+    left: 0;
+    height: 1px;
+    background: var(--gray6);
+    position: relative;
+    overflow: visible;
+    display: block;
+    margin-top: 12px;
+    margin-bottom: 12px
+}
+
+[cmdk-raycast-loader]:after {
+    content: "";
+    width: 50%;
+    height: 1px;
+    position: absolute;
+    background: linear-gradient(90deg,transparent 0,var(--loader-color) 50%,transparent 100%);
+    top: -1px;
+    opacity: 0;
+    animation-duration: 1.5s;
+    animation-delay: 1s;
+    animation-timing-function: ease;
+    animation-name: loading
+}
+
+[cmdk-item] {
+    --at-apply: p-1 mb-1 rounded-md;
+}
+
+[cmdk-item]:hover {
+    --at-apply: bg-neutral-400/10;
+}
+[cmdk-item][data-selected=true] {
+    --at-apply: bg-neutral-400/20;
+}
+
+/* [cmdk-item][data-disabled=true] {
+    color: var(--gray8);
+    cursor: not-allowed
+} */
+
+[cmdk-raycast-open-trigger],[cmdk-raycast-subcommand-trigger] {
+    color: var(--gray11);
+    padding: 0 4px 0 8px;
+    border-radius: 6px;
+    font-weight: 500;
+    font-size: 12px;
+    height: 28px;
+    letter-spacing: -.25px
+}
+
+[cmdk-raycast-open-trigger] {
+    display: flex;
+    align-items: center;
+    color: var(--gray12)
+}
+
+[cmdk-separator] {
+    height: 1px;
+    width: 100%;
+    background: var(--gray5);
+    margin: 4px 0
+}
+
+:not([hidden])+[cmdk-group] {
+    margin-top: 8px
+}
+
+[cmdk-group-heading] {
+    --at-apply: text-sm font-bold op-70 ml-1 my-2;
+}
+
+[cmdk-raycast-footer] {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    width: 100%;
+    position: absolute;
+    background: var(--gray1);
+    bottom: 0;
+    padding: 8px;
+    border-top: 1px solid var(--gray6);
+    border-radius: 0 0 12px 12px
+}
+
+[cmdk-raycast-footer] svg {
+    width: 20px;
+    height: 20px;
+    filter: grayscale(1);
+    margin-right: auto
+}
+
+[cmdk-raycast-footer] hr {
+    height: 12px;
+    width: 1px;
+    border: 0;
+    background: var(--gray6);
+    margin: 0 4px 0 12px
+}
+
+@media(prefers-color-scheme: dark) {
+    [cmdk-raycast-footer] {
+        background:var(--gray2)
+    }
+}
+
+[cmdk-dialog] {
+    z-index: var(--layer-portal);
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translateX(-50%) translateY(-50%);
+}
+
+[cmdk-dialog] [cmdk] {
+    width: 640px;
+    transform-origin: center center;
+    animation: dialogIn var(--transition-fast) forwards
+}
+
+[cmdk-dialog][data-state=closed] [cmdk] {
+    animation: dialogOut var(--transition-fast) forwards
+}
+
+[cmdk-empty] {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 64px;
+    white-space: pre-wrap;
+    color: var(--gray11)
+}
+
+@keyframes loading {
+    0% {
+        opacity: 0;
+        transform: translateX(0)
+    }
+
+    50% {
+        opacity: 1;
+        transform: translateX(100%)
+    }
+
+    to {
+        opacity: 0;
+        transform: translateX(0)
+    }
+}
+
+@keyframes shine {
+    to {
+        background-position: 200%;
+        opacity: 0
+    }
+}
+
+@keyframes border {
+    to {
+        box-shadow: 0 0 0 1px var(--gray6)
+    }
+}
+
+@keyframes showTopShine {
+    to {
+        opacity: 1
+    }
+}
+
+
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: scale(.96)
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1)
+    }
+}
+
+@keyframes slideOut {
+    0% {
+        opacity: 1;
+        transform: scale(1)
+    }
+
+    to {
+        opacity: 0;
+        transform: scale(.96)
+    }
+}
+
+@media(max-width: 640px) {
+    [cmdk-input] {
+        font-size:16px
+    }
+}

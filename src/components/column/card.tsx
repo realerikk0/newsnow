@@ -9,9 +9,10 @@ import type { SyntheticListenerMap } from "@dnd-kit/core/dist/hooks/utilities"
 import { ofetch } from "ofetch"
 import { useWindowSize } from "react-use"
 import { OverlayScrollbar } from "../common/overlay-scrollbar"
-import { focusSourcesAtom, refetchSourcesAtom } from "~/atoms"
+import { refetchSourcesAtom } from "~/atoms"
 import { useRelativeTime } from "~/hooks/useRelativeTime"
 import { safeParseString } from "~/utils"
+import { useFocus } from "~/hooks/useFocus"
 
 export interface ItemsProps extends React.HTMLAttributes<HTMLDivElement> {
   id: SourceID
@@ -56,7 +57,6 @@ export const CardWrapper = forwardRef<HTMLDivElement, ItemsProps>(({ id, isDragg
 
 const prevSourceItems: Partial<Record<SourceID, NewsItem[]>> = {}
 function NewsCard({ id, inView, handleListeners }: NewsCardProps) {
-  const [focusSources, setFocusSources] = useAtom(focusSourcesAtom)
   const [refetchSource, setRefetchSource] = useAtom(refetchSourcesAtom)
   const { data, isFetching, isPlaceholderData, isError } = useQuery({
     queryKey: [id, refetchSource[id]],
@@ -99,9 +99,6 @@ function NewsCard({ id, inView, handleListeners }: NewsCardProps) {
     enabled: inView,
   })
 
-  const addFocusList = useCallback(() => {
-    setFocusSources(focusSources.includes(id) ? focusSources.filter(i => i !== id) : [...focusSources, id])
-  }, [setFocusSources, focusSources, id])
   const manualRefetch = useCallback(() => {
     setRefetchSource(prev => ({
       ...prev,
@@ -110,6 +107,8 @@ function NewsCard({ id, inView, handleListeners }: NewsCardProps) {
   }, [setRefetchSource, id])
 
   const isFreshFetching = useMemo(() => isFetching && !isPlaceholderData, [isFetching, isPlaceholderData])
+
+  const { isFocused, toggleFocus } = useFocus(id)
 
   return (
     <>
@@ -144,14 +143,16 @@ function NewsCard({ id, inView, handleListeners }: NewsCardProps) {
           />
           <button
             type="button"
-            className={clsx("btn", focusSources.includes(id) ? "i-ph:star-fill" : "i-ph:star-duotone")}
-            onClick={addFocusList}
+            className={clsx("btn", isFocused ? "i-ph:star-fill" : "i-ph:star-duotone")}
+            onClick={toggleFocus}
           />
-          <button
-            {...handleListeners}
-            type="button"
-            className={clsx("btn", "i-ph:dots-six-vertical-duotone", "cursor-grab")}
-          />
+          {handleListeners && (
+            <button
+              {...handleListeners}
+              type="button"
+              className={clsx("btn", "i-ph:dots-six-vertical-duotone", "cursor-grab")}
+            />
+          )}
         </div>
       </div>
 
