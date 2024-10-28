@@ -12,7 +12,7 @@ import { OverlayScrollbar } from "../common/overlay-scrollbar"
 import { refetchSourcesAtom } from "~/atoms"
 import { useRelativeTime } from "~/hooks/useRelativeTime"
 import { safeParseString } from "~/utils"
-import { useFocus } from "~/hooks/useFocus"
+import { useFocusWith } from "~/hooks/useFocus"
 
 export interface ItemsProps extends React.HTMLAttributes<HTMLDivElement> {
   id: SourceID
@@ -108,7 +108,7 @@ function NewsCard({ id, inView, handleListeners }: NewsCardProps) {
 
   const isFreshFetching = useMemo(() => isFetching && !isPlaceholderData, [isFetching, isPlaceholderData])
 
-  const { isFocused, toggleFocus } = useFocus(id)
+  const { isFocused, toggleFocus } = useFocusWith(id)
 
   return (
     <>
@@ -116,6 +116,7 @@ function NewsCard({ id, inView, handleListeners }: NewsCardProps) {
         <div className="flex gap-2 items-center">
           <a
             className={clsx("w-8 h-8 rounded-full bg-cover hover:animate-spin")}
+            target="_blank"
             href={sources[id].home}
             title={sources[id].desc}
             style={{

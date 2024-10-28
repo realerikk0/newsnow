@@ -18,7 +18,7 @@ export function NavBar() {
         type="button"
         onClick={() => toggle(true)}
         className={clsx(
-          "px-2 hover:(bg-primary/10 rounded-md)",
+          "px-2 hover:(bg-primary/10 rounded-md) op-70 dark:op-90",
         )}
       >
         更多
