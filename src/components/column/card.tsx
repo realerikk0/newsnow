@@ -92,8 +92,10 @@ function NewsCard({ id, inView, handleListeners }: NewsCardProps) {
     },
     // refetch 时显示原有的数据
     placeholderData: (prev) => {
-      if (prev?.items && sources[id].type === "hottest") prevSourceItems[id] = prev.items
-      return prev
+      if (prev?.id === id) {
+        if (prev?.items && sources[id].type === "hottest") prevSourceItems[id] = prev.items
+        return prev
+      }
     },
     staleTime: 1000 * 60 * 5,
     enabled: inView,

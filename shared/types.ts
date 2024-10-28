@@ -104,6 +104,7 @@ export interface NewsItem {
 
 export interface SourceResponse {
   status: "success" | "cache"
+  id: SourceID
   updatedTime: number | string
   items: NewsItem[]
 }
